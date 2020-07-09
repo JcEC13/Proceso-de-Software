@@ -113,11 +113,11 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `detalle_venta`
+-- Estructura de tabla para la tabla `tblpedido`
 --
 
-CREATE TABLE `detalle_venta` (
-  `iddetalle_venta` int(11) NOT NULL,
+CREATE TABLE `tblpedido` (
+  `idpedido_venta` int(11) NOT NULL,
   `idventa` int(11) NOT NULL,
   `idarticulo` int(11) NOT NULL,
   `cantidad` int(11) NOT NULL,
@@ -126,10 +126,10 @@ CREATE TABLE `detalle_venta` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `detalle_venta`
+-- Volcado de datos para la tabla `tblPedido`
 --
 
-INSERT INTO `detalle_venta` (`iddetalle_venta`, `idventa`, `idarticulo`, `cantidad`, `precio_venta`, `descuento`) VALUES
+INSERT INTO `tblpedido` (`idpedido_venta`, `idventa`, `idarticulo`, `cantidad`, `precio_venta`, `descuento`) VALUES
 (12, 10, 6, 10, '30.00', '5.00'),
 (13, 10, 7, 10, '250.00', '10.00'),
 (14, 11, 6, 1, '30.00', '0.00'),
