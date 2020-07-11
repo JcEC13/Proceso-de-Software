@@ -25,10 +25,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `producto`
+-- Estructura de tabla para la tabla `articulo`
 --
 
-CREATE TABLE `´producto` (
+CREATE TABLE `articulo` (
   `idarticulo` int(11) NOT NULL,
   `idcategoria` int(11) NOT NULL,
   `codigo` varchar(50) DEFAULT NULL,
@@ -40,10 +40,10 @@ CREATE TABLE `´producto` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `producto`
+-- Volcado de datos para la tabla `articulo`
 --
 
-INSERT INTO `producto` (`idarticulo`, `idcategoria`, `codigo`, `nombre`, `stock`, `descripcion`, `imagen`, `condicion`) VALUES
+INSERT INTO `articulo` (`idarticulo`, `idcategoria`, `codigo`, `nombre`, `stock`, `descripcion`, `imagen`, `condicion`) VALUES
 (6, 7, '00458', 'Ligheter', 25, 'modelo lighter de MICRONICS', '1535417422.jpg', 1),
 (7, 9, '0040kl', 'disco solido', 58, 'disco marca KINGSTON', '1535417431.jfif', 1),
 (8, 9, 'HJL-OP', 'DATATRABEL', 107, 'usb de 15gb', '1535417452.jpg', 1);
@@ -113,11 +113,11 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `tblpedido`
+-- Estructura de tabla para la tabla `detalle_venta`
 --
 
-CREATE TABLE `tblpedido` (
-  `idpedido_venta` int(11) NOT NULL,
+CREATE TABLE `detalle_venta` (
+  `iddetalle_venta` int(11) NOT NULL,
   `idventa` int(11) NOT NULL,
   `idarticulo` int(11) NOT NULL,
   `cantidad` int(11) NOT NULL,
@@ -126,10 +126,10 @@ CREATE TABLE `tblpedido` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `tblPedido`
+-- Volcado de datos para la tabla `detalle_venta`
 --
 
-INSERT INTO `tblpedido` (`idpedido_venta`, `idventa`, `idarticulo`, `cantidad`, `precio_venta`, `descuento`) VALUES
+INSERT INTO `detalle_venta` (`iddetalle_venta`, `idventa`, `idarticulo`, `cantidad`, `precio_venta`, `descuento`) VALUES
 (12, 10, 6, 10, '30.00', '5.00'),
 (13, 10, 7, 10, '250.00', '10.00'),
 (14, 11, 6, 1, '30.00', '0.00'),
