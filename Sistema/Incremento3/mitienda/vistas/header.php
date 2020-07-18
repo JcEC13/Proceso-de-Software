@@ -52,13 +52,13 @@ if (strlen(session_id())<1)
 
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="../files/usuarios/wallhaven-j85665.jpg" class="user-image" alt="User Image">
-              <span class="hidden-xs">Enrique</span>
+              <img src="../files/usuarios/logo.jpg" class="user-image" alt="User Image">
+              <span class="hidden-xs"><?php echo $_SESSION['nombre']?></span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="../files/usuarios/wallhaven-j85665.jpg" class="img-circle" alt="User Image">
+                <img src="../files/usuarios/logo.jpg" class="img-circle" alt="User Image">
 
                 <p>
                   Enrique Ubaldo-Desarrollo de software
