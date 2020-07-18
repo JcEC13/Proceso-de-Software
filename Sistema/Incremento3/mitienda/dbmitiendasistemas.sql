@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.9
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-08-2018 a las 04:15:42
--- Versión del servidor: 10.1.31-MariaDB
--- Versión de PHP: 7.1.15
+-- Tiempo de generación: 17-07-2020 a las 18:14:23
+-- Versión del servidor: 10.4.13-MariaDB
+-- Versión de PHP: 7.3.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -19,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `dbsistema`
+-- Base de datos: `dbmitiendasistemas`
 --
 
 -- --------------------------------------------------------
@@ -36,7 +35,7 @@ CREATE TABLE `articulo` (
   `stock` int(11) DEFAULT NULL,
   `descripcion` varchar(256) DEFAULT NULL,
   `imagen` varchar(50) DEFAULT NULL,
-  `condicion` tinyint(4) DEFAULT '1'
+  `condicion` tinyint(4) DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -44,9 +43,10 @@ CREATE TABLE `articulo` (
 --
 
 INSERT INTO `articulo` (`idarticulo`, `idcategoria`, `codigo`, `nombre`, `stock`, `descripcion`, `imagen`, `condicion`) VALUES
-(6, 7, '00458', 'Ligheter', 25, 'modelo lighter de MICRONICS', '1535417422.jpg', 1),
-(7, 9, '0040kl', 'disco solido', 58, 'disco marca KINGSTON', '1535417431.jfif', 1),
-(8, 9, 'HJL-OP', 'DATATRABEL', 107, 'usb de 15gb', '1535417452.jpg', 1);
+(6, 7, '00100', 'Catan', 4, 'Juego de mesa de comercio', '1594318371.jpg', 1),
+(7, 7, '00101', 'Carcassonne', 5, 'Juego de mesa de conquista de terrenos', '1594318415.jpg', 1),
+(8, 8, 'HJL-OP', 'Dados de metal', 2, 'negro | marron', '1594318467.jpg', 1),
+(12, 9, '00102', 'Cuaderno de Date Live', 10, 'Cuaderno de la serie Date Live de Kurumi', '1594319144.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -58,7 +58,7 @@ CREATE TABLE `categoria` (
   `idcategoria` int(11) NOT NULL,
   `nombre` varchar(50) NOT NULL,
   `descripcion` varchar(256) DEFAULT NULL,
-  `condicion` tinyint(4) NOT NULL DEFAULT '1'
+  `condicion` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -66,10 +66,10 @@ CREATE TABLE `categoria` (
 --
 
 INSERT INTO `categoria` (`idcategoria`, `nombre`, `descripcion`, `condicion`) VALUES
-(7, 'TECLADOS', 'teclados gamers', 1),
-(8, 'CPU\'s', 'cpus gamers de alta categoria', 1),
-(9, 'DISCOS DUROS', 'disco solidos', 1),
-(12, 'MONITORES', 'monitores gamers', 1);
+(7, 'Juegos de mesa', 'Juegos de mesa modernos', 1),
+(8, 'Juegos de rol', 'Componente para los juegos de rol', 1),
+(9, 'Merchandising Japones', 'Accesorios y Peluches de Anime', 1),
+(12, 'Merchandising Koreano', 'Accesorios y Peluches de Korea', 1);
 
 -- --------------------------------------------------------
 
@@ -146,7 +146,8 @@ INSERT INTO `detalle_venta` (`iddetalle_venta`, `idventa`, `idarticulo`, `cantid
 (25, 21, 6, 1, '30.00', '5.00'),
 (26, 22, 6, 1, '30.00', '0.00'),
 (27, 22, 7, 1, '300.00', '0.00'),
-(28, 22, 8, 1, '30.00', '0.00');
+(28, 22, 8, 1, '30.00', '0.00'),
+(29, 23, 6, 1, '30.00', '0.00');
 
 --
 -- Disparadores `detalle_venta`
@@ -240,7 +241,10 @@ INSERT INTO `persona` (`idpersona`, `tipo_persona`, `nombre`, `tipo_documento`, 
 (8, 'Cliente', 'publico general', 'DNI', '30224520', 'Av.jose olaya 215', '54325230', 'public@hotmail.com'),
 (9, 'Proveedor', 'TECNO-PC', 'RUC', '20485248751', 'Calle los naranjales 245', '054587852', 'tecno@gmail.com'),
 (10, 'Proveedor', 'INFONET', 'RUC', '40485245824', 'Av. quiñones 102', '054789854', 'infonet@hotmail.com'),
-(11, 'Cliente', 'pedro', 'DNI', '458521748', 'Simon bolivar 120', '78954263', 'pedro@gmailcom');
+(11, 'Cliente', 'pedro', 'DNI', '458521748', 'Simon bolivar 120', '78954263', 'pedro@gmailcom'),
+(12, 'Cliente', 'juan espiritu campos', 'DNI', '65241536', 'av. huancavelica 1100', '977977456', 'juancs@hotmail.com'),
+(13, 'Cliente', 'Lalo', 'RUC', '10258741695', 'av. san carlos 365', '965345971', 'lalos@gmail.com'),
+(14, 'Cliente', 'jefferson', 'DNI', '85414367', 'jr. jaime 34', '999667941', 'jeffesong@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -260,7 +264,7 @@ CREATE TABLE `usuario` (
   `login` varchar(20) NOT NULL,
   `clave` varchar(64) NOT NULL,
   `imagen` varchar(50) NOT NULL,
-  `condicion` tinyint(4) NOT NULL DEFAULT '1'
+  `condicion` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -269,7 +273,11 @@ CREATE TABLE `usuario` (
 
 INSERT INTO `usuario` (`idusuario`, `nombre`, `tipo_documento`, `num_documento`, `direccion`, `telefono`, `email`, `cargo`, `login`, `clave`, `imagen`, `condicion`) VALUES
 (1, 'angel', 'DNI', '72154871', 'Calle los alpes 210', '547821', 'admin@gmail.com', 'Administrador', 'admin', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', '1535417472.jpg', 1),
-(2, 'juan', 'DNI', '30115425', 'calle los jirasoles 450', '054789521', 'juan@hotmail.com', 'empleado', 'juan', '5b065b0996c44ab2e641e24472b28d3e38554ce13d06d72b1aa93480dda21d43', '1535417486.jpg', 1);
+(2, 'juan', 'DNI', '30115425', 'calle los jirasoles 450', '054789521', 'juan@hotmail.com', 'empleado', 'juan', '5b065b0996c44ab2e641e24472b28d3e38554ce13d06d72b1aa93480dda21d43', '1535417486.jpg', 1),
+(3, 'Enrique Ubaldo', 'DNI', '76927894', 'jr.tacna', '977977977', 'enrique@gmail.com', 'Web develop', 'enrique', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'wallhaven-j85665.jpg', 1),
+(4, '', '', '', NULL, NULL, NULL, NULL, '', '', '', 0),
+(5, 'jhon aldo canchuricra valerio', 'DNI', '76769878', 'av. huancavelica 1100', '977977456', 'jhonaldocv@hotmail.com', 'Administrador', 'john1985', '2ff97c5a44e0856229f7f7ebcd812bdaf67d91feec4d7a32c07c058d7b442795', '1594995065.jpg', 1),
+(6, 'jhon ciro', 'RUC', '10258741695', 'CALLE REAL 585', '965345971', 'ciro.galvez@notarioacirogalvez.com.pe', 'Vendedor', 'jhonciro', '15e2b0d3c33891ebb0f1ef609ec419420c20e320ce94c65fbc8c3312448eb225', '1594994743.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -296,7 +304,26 @@ INSERT INTO `usuario_permiso` (`idusuario_permiso`, `idusuario`, `idpermiso`) VA
 (93, 1, 6),
 (94, 1, 7),
 (97, 2, 1),
-(98, 2, 4);
+(98, 2, 4),
+(113, 3, 1),
+(114, 3, 2),
+(115, 3, 3),
+(116, 3, 4),
+(117, 3, 5),
+(118, 3, 6),
+(119, 3, 7),
+(122, 6, 1),
+(123, 6, 2),
+(124, 6, 3),
+(125, 6, 4),
+(126, 6, 5),
+(127, 6, 6),
+(128, 6, 7),
+(129, 5, 2),
+(130, 5, 3),
+(131, 5, 4),
+(132, 5, 6),
+(133, 5, 7);
 
 -- --------------------------------------------------------
 
@@ -328,13 +355,14 @@ INSERT INTO `venta` (`idventa`, `idcliente`, `idusuario`, `tipo_comprobante`, `s
 (13, 8, 1, 'Factura', '001', '0002', '2018-06-09 00:00:00', '18.00', '240.00', 'Aceptado'),
 (14, 8, 1, 'Factura', '20', '30', '2018-07-24 00:00:00', '18.00', '490.00', 'Aceptado'),
 (15, 8, 1, 'Factura', '001', '0008', '2018-08-26 00:00:00', '18.00', '20.00', 'Aceptado'),
-(16, 8, 1, 'Boleta', '001', '0070', '2018-08-26 00:00:00', '0.00', '245.00', 'Aceptado'),
-(17, 8, 1, 'Factura', '002', '0004', '2018-08-26 00:00:00', '18.00', '245.00', 'Aceptado'),
+(16, 8, 1, 'Boleta', '001', '0070', '2018-08-26 00:00:00', '0.00', '245.00', 'Anulado'),
+(17, 8, 1, 'Factura', '002', '0004', '2018-08-26 00:00:00', '18.00', '245.00', 'Anulado'),
 (18, 8, 1, 'Boleta', '001', '0006', '2018-08-26 00:00:00', '0.00', '30.00', 'Aceptado'),
 (19, 8, 1, 'Factura', '001', '0009', '2018-08-26 00:00:00', '18.00', '248.00', 'Aceptado'),
-(20, 8, 1, 'Factura', '001', '002', '2018-08-26 00:00:00', '18.00', '50.00', 'Aceptado'),
-(21, 8, 1, 'Factura', '001', '0004', '2018-08-27 00:00:00', '18.00', '25.00', 'Aceptado'),
-(22, 11, 1, 'Ticket', '001', '0004', '2018-08-27 00:00:00', '0.00', '360.00', 'Aceptado');
+(20, 8, 1, 'Factura', '001', '002', '2018-08-26 00:00:00', '18.00', '50.00', 'Anulado'),
+(21, 8, 1, 'Factura', '001', '0004', '2018-08-27 00:00:00', '18.00', '25.00', 'Anulado'),
+(22, 11, 1, 'Ticket', '001', '0004', '2018-08-27 00:00:00', '0.00', '360.00', 'Aceptado'),
+(23, 14, 3, 'Boleta', '12kw', '159', '2020-07-10 00:00:00', '10.00', '30.00', 'Aceptado');
 
 --
 -- Índices para tablas volcadas
@@ -422,7 +450,7 @@ ALTER TABLE `venta`
 -- AUTO_INCREMENT de la tabla `articulo`
 --
 ALTER TABLE `articulo`
-  MODIFY `idarticulo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `idarticulo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `categoria`
@@ -440,7 +468,7 @@ ALTER TABLE `detalle_ingreso`
 -- AUTO_INCREMENT de la tabla `detalle_venta`
 --
 ALTER TABLE `detalle_venta`
-  MODIFY `iddetalle_venta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `iddetalle_venta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT de la tabla `ingreso`
@@ -458,25 +486,25 @@ ALTER TABLE `permiso`
 -- AUTO_INCREMENT de la tabla `persona`
 --
 ALTER TABLE `persona`
-  MODIFY `idpersona` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `idpersona` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `idusuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idusuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario_permiso`
 --
 ALTER TABLE `usuario_permiso`
-  MODIFY `idusuario_permiso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
+  MODIFY `idusuario_permiso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=134;
 
 --
 -- AUTO_INCREMENT de la tabla `venta`
 --
 ALTER TABLE `venta`
-  MODIFY `idventa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `idventa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- Restricciones para tablas volcadas
